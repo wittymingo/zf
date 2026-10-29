@@ -122,8 +122,8 @@ git remote add origin https://github.com/<用户名>/<仓库名>.git
 git push -u origin main
 ```
 
-3. 仓库 **Settings → Pages → Build and deployment → Source** 选 **GitHub Actions**（首次推送后工作流会自动尝试开启，失败时手动选一次）。
-4. 等 Actions 跑完，打开 `https://<用户名>.github.io/<仓库名>/`。
+3. 仓库 **Settings → Pages → Build and deployment → Source** 选 **GitHub Actions**。这一步必须先做：首次创建 Pages 站点需要仓库管理员权限，Actions 的令牌没有这个权限（`configure-pages` 会报 `Resource not accessible by integration`）。
+4. 推送 `main` 触发部署，等 Actions 跑完，打开 `https://<用户名>.github.io/<仓库名>/`。
 
 - `vite.config.ts` 里 `base: './'`，产物用相对路径，所以仓库名可以随便取，不需要改配置。
 - 想用云端同步：**Settings → Secrets and variables → Actions → New repository secret**，加 `VITE_SUPABASE_URL` 和 `VITE_SUPABASE_ANON_KEY`，再点一次 **Re-run all jobs**。不加 Secret 时构建出来是本地模式（分数只存当前设备）。
