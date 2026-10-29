@@ -1,0 +1,78 @@
+<view class="home">
+  <view class="home-card">
+    <view class="eyebrow">
+      <text>追分台球</text>
+      <text class="mode-badge">本地模式</text>
+    </view>
+    <view class="title">欢迎来追分</view>
+    <view class="lead">选人数、填昵称，点一下就能记分。</view>
+
+    <view class="field">
+      <view class="field-label">本局人数</view>
+      <view class="segmented">
+        <view
+          class="seg-item {{playerCount === 2 ? 'is-on' : ''}}"
+          data-count="2"
+          bindtap="onChooseCount"
+        >
+          2 人
+        </view>
+        <view
+          class="seg-item {{playerCount === 3 ? 'is-on' : ''}}"
+          data-count="3"
+          bindtap="onChooseCount"
+        >
+          3 人
+        </view>
+      </view>
+    </view>
+
+    <view class="field" wx:if="{{playerCount === 3}}">
+      <view class="field-label">三人结算方式</view>
+      <view class="segmented">
+        <view
+          class="seg-item {{threeMode === 'all' ? 'is-on' : ''}}"
+          data-mode="all"
+          bindtap="onChooseMode"
+        >
+          通赔
+        </view>
+        <view
+          class="seg-item {{threeMode === 'upper' ? 'is-on' : ''}}"
+          data-mode="upper"
+          bindtap="onChooseMode"
+        >
+          只赔上家
+        </view>
+      </view>
+      <view class="field-hint">{{threeModeHint}}</view>
+    </view>
+
+    <view class="field">
+      <view class="field-label">玩家昵称</view>
+      <view class="names-grid">
+        <view class="name-field" wx:for="{{names}}" wx:for-index="idx" wx:for-item="name">
+          <text class="name-label">玩家 {{idx + 1}}</text>
+          <input
+            class="name-input"
+            type="text"
+            maxlength="12"
+            value="{{name}}"
+            placeholder="玩家{{idx + 1}}"
+            data-index="{{idx}}"
+            bindinput="onNameInput"
+          />
+        </view>
+      </view>
+      <view class="field-hint">{{nameHint}}</view>
+    </view>
+
+    <view class="primary-btn" bindtap="onStart" hover-class="primary-btn-hover">现在开始追分</view>
+
+    <view class="ghost-btn" wx:if="{{lastMatch}}" bindtap="onContinue" hover-class="ghost-btn-hover">
+      继续上一局 · {{lastMatch.playerCount}} 人 · 已记 {{lastMatch.actionCount}} 笔
+    </view>
+
+    <view class="footnote">分数只保存在这台手机，不会上传；换设备打开是另一局。</view>
+  </view>
+</view>

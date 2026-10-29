@@ -1,0 +1,115 @@
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 18px calc(24px + env(safe-area-inset-bottom));
+}
+
+/* 装得下时垂直居中，装不下时从顶部开始滚，不会被裁掉 */
+.home-card {
+  width: 100%;
+  max-width: 440px;
+  margin: auto;
+  padding: 28px 22px 22px;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: 0 24px 60px rgba(22, 60, 45, 0.1), 0 2px 6px rgba(22, 60, 45, 0.04);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--primary);
+}
+
+.mode-badge {
+  margin-left: 8px;
+  padding: 2px 8px;
+  border: 1px solid #f0dcb4;
+  border-radius: 999px;
+  background: #fff6e5;
+  color: #8a5a12;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.title {
+  margin: 0 0 8px;
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.lead {
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field-label {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.field-hint {
+  margin-top: 8px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.names-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.name-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.name-label {
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.name-input {
+  width: 100%;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.footnote {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}

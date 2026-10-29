@@ -1,0 +1,148 @@
+<view class="center-state" wx:if="{{loading}}">
+  <text class="center-text">正在载入对局…</text>
+</view>
+
+<view class="center-state" wx:elif="{{notFound}}">
+  <view class="center-title">对局不存在</view>
+  <view class="center-text">这台手机上没有这一局的记录，回首页开一局新的。</view>
+  <view class="primary-btn center-btn" bindtap="onBack" hover-class="primary-btn-hover">返回首页</view>
+</view>
+
+<view class="match" wx:else>
+  <view class="topbar-actions">
+    <view class="action-btn" bindtap="onStatsOpen">统计</view>
+    <view
+      class="action-btn danger {{hasActions ? '' : 'is-disabled'}}"
+      bindtap="onResetTap"
+    >
+      重置
+    </view>
+    <view class="action-btn {{hasActions ? '' : 'is-disabled'}}" bindtap="onUndo">撤销</view>
+  </view>
+
+  <view class="status-line">
+    <text class="status-mode" wx:if="{{showThreeMode}}">{{threeModeLabel}}</text>
+    <text class="status-text">{{statusText}}</text>
+  </view>
+
+  <view class="board board-{{count}}">
+    <view class="player" wx:for="{{players}}" wx:for-item="player" wx:key="id">
+      <view class="player-accent" style="background: {{player.accent}}"></view>
+
+      <view class="player-head">
+        <view class="player-id">
+          <view class="accent-dot" style="background: {{player.accent}}"></view>
+          <input
+            class="player-name"
+            value="{{player.name}}"
+            maxlength="12"
+            data-id="{{player.id}}"
+            data-index="{{player.index}}"
+            bindinput="onNameInput"
+            bindblur="onNameBlur"
+          />
+        </view>
+        <view class="score {{player.scoreClass}}">{{player.score}}</view>
+      </view>
+
+      <view class="score-rows">
+        <view class="score-row {{row.cls}}" wx:for="{{player.rows}}" wx:for-item="row" wx:key="key">
+          <view
+            class="score-btn {{type.cls}}"
+            wx:for="{{row.types}}"
+            wx:for-item="type"
+            wx:key="id"
+            data-player="{{player.id}}"
+            data-type="{{type.id}}"
+            bindtap="onScore"
+            hover-class="score-btn-hover"
+            aria-role="button"
+            aria-label="{{type.aria}}"
+          >
+            <view class="label">
+              <text class="label-line" wx:for="{{type.lines}}" wx:for-item="line" wx:key="*this">{{line}}</text>
+            </view>
+            <view class="delta">{{type.deltaText}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="modal" wx:if="{{statsOpen}}" catchtouchmove="noop" bindtap="onStatsClose">
+  <view class="modal-card stats-card" catchtap="noop">
+    <view class="modal-title">本局统计</view>
+
+    <view class="stats-tabs">
+      <view
+        class="stats-tab {{statsTab === 'diff' ? 'is-on' : ''}}"
+        data-tab="diff"
+        bindtap="onStatsTab"
+      >
+        比分差
+      </view>
+      <view
+        class="stats-tab {{statsTab === 'detail' ? 'is-on' : ''}}"
+        data-tab="detail"
+        bindtap="onStatsTab"
+      >
+        击球统计
+      </view>
+    </view>
+
+    <scroll-view class="stats-panel" scroll-y wx:if="{{statsTab === 'diff'}}">
+      <view class="verdict {{stats.verdictNeutral ? 'is-neutral' : ''}}">{{stats.verdictText}}</view>
+      <view class="verdict-sub" wx:if="{{stats.verdictSub}}">{{stats.verdictSub}}</view>
+
+      <view class="diff-list">
+        <view class="diff-row" wx:for="{{stats.rows}}" wx:key="id">
+          <text class="diff-rank">{{item.rank}}</text>
+          <view class="accent-dot" style="background: {{item.accent}}"></view>
+          <text class="diff-name">{{item.name}}</text>
+          <text class="diff-score">{{item.score}} 分</text>
+          <text class="diff-value {{item.gapClass}}">{{item.gapText}}</text>
+        </view>
+      </view>
+
+      <view class="stats-note diff-note">{{stats.note}}</view>
+
+      <view class="tip-title">台球建议</view>
+      <view class="tip-list">
+        <view class="tip-item" wx:for="{{stats.tips}}" wx:key="*this">{{item}}</view>
+      </view>
+    </scroll-view>
+
+    <scroll-view class="stats-panel" scroll-y wx:else>
+      <view class="stats-note">每个计分项被点击的次数，随记分实时更新。</view>
+      <view class="stats-player" wx:for="{{detail}}" wx:for-item="row" wx:key="id">
+        <view class="stats-head">
+          <view class="accent-dot" style="background: {{row.accent}}"></view>
+          <text class="stats-name">{{row.name}}</text>
+          <text class="stats-total">{{row.total}} 杆</text>
+        </view>
+        <view class="stats-grid">
+          <view class="stat-cell" wx:for="{{row.cells}}" wx:for-item="cell" wx:key="id">
+            <text class="stat-label">{{cell.label}}</text>
+            <text class="stat-count {{cell.zero ? 'is-zero' : ''}}">{{cell.count}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="modal-actions">
+      <view class="line-btn" bindtap="onStatsClose" hover-class="line-btn-hover">关闭</view>
+    </view>
+  </view>
+</view>
+
+<view class="modal" wx:if="{{resetOpen}}" catchtouchmove="noop" bindtap="onResetCancel">
+  <view class="modal-card" catchtap="noop">
+    <view class="modal-title">重新开始？</view>
+    <view class="modal-text">会清空这局所有分数和统计次数，从 0 开始。清空后无法恢复。</view>
+    <view class="modal-actions">
+      <view class="line-btn" bindtap="onResetCancel" hover-class="line-btn-hover">取消</view>
+      <view class="danger-btn" bindtap="onResetConfirm">确定重置</view>
+    </view>
+  </view>
+</view>
