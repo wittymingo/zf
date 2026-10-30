@@ -154,6 +154,18 @@ npm run deploy         # 构建 + 上传 dist，wrangler.toml 已指定项目名
 - **Vercel**：导入仓库即可，Vite 会被自动识别；环境变量在 Project Settings → Environment Variables 配置。
 - **GitHub Pages**：见上文「部署到 GitHub Pages」，工作流已内置。
 
+## 微信小程序（本地版）
+
+`miniprogram/` 是原生小程序版本（无构建步骤、无后端），计分规则、按钮分组、统计口径与网页版完全一致，分数存在 `wx` 本地存储里。
+
+1. 微信开发者工具 → **导入项目** → 目录选本仓库的 `miniprogram/`。
+2. `project.config.json` 里的 AppID 是 `touristappid`（游客模式），真机预览和上传前换成自己的小程序 AppID。
+3. 不需要配置域名、不需要服务器，因为不发任何网络请求。
+
+能力边界和网页本地模式一样：一台手机只存一局，换设备打开看不到。要多人同步，需要另加微信云开发（同一套 `utils/` 逻辑，替换 `utils/store.js` 的实现即可）。
+
+上线流程：完成**小程序备案**（免费，1–20 个工作日）→ 上传代码 → 提交审核 → 发布。个人主体可选「工具 → 效率」类目；不做微信认证也能发布，但搜不到、不能收款。
+
 ## 目录结构
 
 ```
@@ -170,6 +182,13 @@ src/
   pages/HomePage.tsx        欢迎页（人数、昵称、开始、继续上一局）
   pages/MatchPage.tsx       计分页（分数栏、按钮、统计、重置、撤销、分享、同步状态）
   styles.css                全部样式（浅色配色，移动端优先）
+miniprogram/                微信小程序（本地存储版，独立于网页构建）
+  utils/types.js            计分项定义
+  utils/rules.js            三人上家 / 下家联动结算
+  utils/store.js            wx 本地存储读写
+  utils/summary.js          分数、统计、比分差、台球建议
+  pages/home/               开局页（人数、结算方式、昵称、继续上一局）
+  pages/match/              计分页（按钮、状态、统计、重置、撤销）
 supabase/schema.sql         建表 + RLS + Realtime 配置
 wrangler.toml               Cloudflare Pages 项目配置
 ```
@@ -178,4 +197,5 @@ wrangler.toml               Cloudflare Pages 项目配置
 
 - 只读观战 / 房主制 / 进房口令（RLS + Supabase Auth）。
 - 历史流水页与整局统计（`match_scores` 视图已经建好）。
-- 小程序版本：同一套 Supabase 表，前端换 Taro / 原生小程序即可。
+- 小程序多人同步：接微信云开发，替换 `miniprogram/utils/store.js` 的实现，页面层不用动。
+

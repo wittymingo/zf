@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/match/match"
+  ],
+  "window": {
+    "navigationBarTitleText": "追分台球",
+    "navigationBarBackgroundColor": "#f3f7f4",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f3f7f4",
+    "backgroundTextStyle": "dark"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
