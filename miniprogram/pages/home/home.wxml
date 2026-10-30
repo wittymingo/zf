@@ -1,7 +1,7 @@
 <view class="home">
   <view class="home-card">
     <view class="eyebrow">
-      <text>追分台球</text>
+      <text>台球.追分</text>
       <text class="mode-badge">本地模式</text>
     </view>
     <view class="title">欢迎来追分</view>
