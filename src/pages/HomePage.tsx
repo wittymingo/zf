@@ -60,7 +60,7 @@ export function HomePage({ sharedMode, starting, startError, onStart, onContinue
     <main className="home">
       <div className="home-card">
         <p className="eyebrow">
-          追分台球
+          台球.追分
           {!sharedMode && <span className="mode-badge">本地模式</span>}
         </p>
         <h1>欢迎来追分</h1>
