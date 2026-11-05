@@ -1,4 +1,5 @@
 const store = require('../../utils/store')
+const rulesGuide = require('../../utils/rules-guide')
 
 const THREE_MODES = {
   all: '大金、黄金9、大黑金、黄金9黑金由另外两家各赔一份。',
@@ -13,6 +14,13 @@ Page({
     nameHint: '两人局各自加减分：另有 4 个让杆项，点谁的卡片就只改谁的分。',
     names: ['玩家1', '玩家2'],
     lastMatch: null,
+    showRules: false,
+    rulesTab: 'two',
+    threeRulesMode: 'all',
+    twoPlayerRows: rulesGuide.TWO_PLAYER_ROWS,
+    threeAllRows: rulesGuide.THREE_ALL_ROWS,
+    threeUpperDiffRows: rulesGuide.THREE_UPPER_DIFF_ROWS,
+    threeSameCount: rulesGuide.THREE_SAME_COUNT,
   },
 
   onShow() {
@@ -48,6 +56,28 @@ Page({
     names[index] = event.detail.value
     this.setData({ names: names })
   },
+
+  onOpenRules() {
+    this.setData({ showRules: true })
+  },
+
+  onCloseRules() {
+    this.setData({ showRules: false })
+  },
+
+  onSwitchRulesTab(event) {
+    const tab = event.currentTarget.dataset.tab
+    if (tab !== 'two' && tab !== 'three') return
+    this.setData({ rulesTab: tab })
+  },
+
+  onSwitchThreeRules(event) {
+    const mode = event.currentTarget.dataset.mode
+    if (mode !== 'all' && mode !== 'upper') return
+    this.setData({ threeRulesMode: mode })
+  },
+
+  noop() {},
 
   onStart() {
     const lastMatch = this.data.lastMatch

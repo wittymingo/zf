@@ -170,6 +170,8 @@ function buildTransfers(players, clickerId, typeId, threeMode) {
 }
 
 module.exports = {
+  THREE_PLAYER_ALL_RULES: THREE_PLAYER_ALL_RULES,
+  THREE_PLAYER_UPPER_RULES: THREE_PLAYER_UPPER_RULES,
   scoreDelta: scoreDelta,
   buildTransfers: buildTransfers,
 }

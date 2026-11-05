@@ -55,6 +55,144 @@
   color: var(--muted);
 }
 
+/* ---------- 玩法说明 ---------- */
+
+.rules-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: -12px 0 20px;
+  padding: 10px 12px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 12px;
+  background: var(--surface-soft);
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+.rules-entry-hover {
+  border-color: var(--primary);
+  background: var(--pos-bg);
+}
+
+.rules-entry-arrow {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1;
+}
+
+.rules-modal-card {
+  display: flex;
+  flex-direction: column;
+  max-height: 84vh;
+  padding: 18px 16px 14px;
+}
+
+.rules-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.rules-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.rules-close {
+  padding: 6px 0 6px 16px;
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.rules-tabs {
+  margin-top: 10px;
+}
+
+.rules-tabs .seg-item {
+  min-height: 36px;
+  font-size: 13px;
+}
+
+.rules-three-head {
+  margin-top: 10px;
+}
+
+.rules-mode {
+  margin-bottom: 10px;
+}
+
+.rules-mode .seg-item {
+  min-height: 34px;
+  font-size: 12.5px;
+}
+
+.rules-body {
+  height: 48vh;
+}
+
+.rules-p {
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.rules-table {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.rules-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+}
+
+.rules-table.is-two .rules-row {
+  grid-template-columns: 1.5fr 1fr;
+}
+
+.rules-row:first-child {
+  border-top: 0;
+}
+
+.rules-row-head {
+  background: var(--surface-soft);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.rules-cell {
+  padding: 7px 6px;
+  text-align: center;
+}
+
+.rules-cell.is-name {
+  text-align: left;
+  color: var(--text-2);
+}
+
+.rules-plus {
+  color: var(--pos-text);
+  font-weight: 600;
+}
+
+.rules-minus {
+  color: var(--neg-text);
+  font-weight: 600;
+}
+
+.rules-none {
+  color: var(--line-strong);
+}
+
 .field {
   margin-bottom: 20px;
 }
