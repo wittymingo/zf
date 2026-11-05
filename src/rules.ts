@@ -1,14 +1,14 @@
 import type { Player, ScoreTransfer, ScoreTypeId, ThreeMode } from './types'
 
-type Seat = 'self' | 'upper' | 'lower'
+export type Seat = 'self' | 'upper' | 'lower'
 
-interface RulePart {
+export interface RulePart {
   seat: Seat
   delta: number
 }
 
 // 三人追分 · 通赔：大金 / 黄金9 / 大黑金 / 黄金9黑金由另外两家都赔
-const THREE_PLAYER_ALL_RULES: Record<ScoreTypeId, RulePart[]> = {
+export const THREE_PLAYER_ALL_RULES: Record<ScoreTypeId, RulePart[]> = {
   bigGold: [
     { seat: 'self', delta: 20 },
     { seat: 'upper', delta: -10 },
@@ -73,7 +73,7 @@ const THREE_PLAYER_ALL_RULES: Record<ScoreTypeId, RulePart[]> = {
 }
 
 // 三人追分 · 只赔上家：通赔项也只由上一家赔单人份
-const THREE_PLAYER_UPPER_RULES: Record<ScoreTypeId, RulePart[]> = {
+export const THREE_PLAYER_UPPER_RULES: Record<ScoreTypeId, RulePart[]> = {
   bigGold: [
     { seat: 'self', delta: 10 },
     { seat: 'upper', delta: -10 },
