@@ -1,10 +1,9 @@
 <view class="home">
   <view class="home-card">
     <view class="eyebrow">
-      <text>台球.追分</text>
+      <text class="brand">234追分助手</text>
       <text class="mode-badge">本地模式</text>
     </view>
-    <view class="title">开始追分</view>
     <view class="lead">选人数、填昵称，点一下就能记分。</view>
 
     <view class="rules-entry" bindtap="onOpenRules" hover-class="rules-entry-hover">
