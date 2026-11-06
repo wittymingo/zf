@@ -200,7 +200,7 @@ export function HomePage({ sharedMode, starting, startError, onStart, onContinue
         {startError && <p className="form-error">{startError}</p>}
 
         <p className="footnote">
-          {sharedMode ? '同一链接的朋友可以一起记分，实时同步。' : '未配置 Supabase，分数只保存在这台设备。'}
+          {sharedMode ? '同一链接的朋友可以一起记分，实时同步。' : '仅用于线下娱乐记分，不涉及任何金钱或财物。'}
         </p>
       </div>
 
