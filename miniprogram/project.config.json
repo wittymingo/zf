@@ -1,0 +1,14 @@
+{
+  "appid": "wx1a5043e860160d2e",
+  "projectname": "zhuifen",
+  "compileType": "miniprogram",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "ignoreUploadUnusedFiles": true
+  },
+  "condition": {}
+}

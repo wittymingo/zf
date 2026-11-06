@@ -1,0 +1,252 @@
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 18px calc(24px + env(safe-area-inset-bottom));
+}
+
+/* 装得下时垂直居中，装不下时从顶部开始滚，不会被裁掉 */
+.home-card {
+  width: 100%;
+  max-width: 440px;
+  margin: auto;
+  padding: 28px 22px 22px;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: 0 24px 60px rgba(22, 60, 45, 0.1), 0 2px 6px rgba(22, 60, 45, 0.04);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--primary);
+}
+
+.mode-badge {
+  margin-left: 8px;
+  padding: 2px 8px;
+  border: 1px solid #f0dcb4;
+  border-radius: 999px;
+  background: #fff6e5;
+  color: #8a5a12;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.brand {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.lead {
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ---------- 玩法说明 ---------- */
+
+.rules-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: -12px 0 20px;
+  padding: 10px 12px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 12px;
+  background: var(--surface-soft);
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+.rules-entry-hover {
+  border-color: var(--primary);
+  background: var(--pos-bg);
+}
+
+.rules-entry-arrow {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1;
+}
+
+.rules-modal-card {
+  display: flex;
+  flex-direction: column;
+  max-height: 84vh;
+  padding: 18px 16px 14px;
+}
+
+.rules-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.rules-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.rules-close {
+  padding: 6px 0 6px 16px;
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.rules-tabs {
+  margin-top: 10px;
+}
+
+.rules-tabs .seg-item {
+  min-height: 36px;
+  font-size: 13px;
+}
+
+.rules-three-head {
+  margin-top: 10px;
+}
+
+.rules-mode {
+  margin-bottom: 10px;
+}
+
+.rules-mode .seg-item {
+  min-height: 34px;
+  font-size: 12.5px;
+}
+
+.rules-body {
+  height: 48vh;
+}
+
+.rules-p {
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.rules-table {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.rules-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+}
+
+.rules-table.is-two .rules-row {
+  grid-template-columns: 1.5fr 1fr;
+}
+
+.rules-row:first-child {
+  border-top: 0;
+}
+
+.rules-row-head {
+  background: var(--surface-soft);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.rules-cell {
+  padding: 7px 6px;
+  text-align: center;
+}
+
+.rules-cell.is-name {
+  text-align: left;
+  color: var(--text-2);
+}
+
+.rules-plus {
+  color: var(--pos-text);
+  font-weight: 600;
+}
+
+.rules-minus {
+  color: var(--neg-text);
+  font-weight: 600;
+}
+
+.rules-none {
+  color: var(--line-strong);
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field-label {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.field-hint {
+  margin-top: 8px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.names-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.name-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.name-label {
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.name-input {
+  width: 100%;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.footnote {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}

@@ -1,0 +1,178 @@
+<view class="home">
+  <view class="home-card">
+    <view class="eyebrow">
+      <text class="brand">234追分助手</text>
+      <text class="mode-badge">本地模式</text>
+    </view>
+    <view class="lead">选人数、填昵称，点一下就能记分。</view>
+
+    <view class="rules-entry" bindtap="onOpenRules" hover-class="rules-entry-hover">
+      <text>玩法与计分规则</text>
+      <text class="rules-entry-arrow">›</text>
+    </view>
+
+    <view class="field">
+      <view class="field-label">本局人数</view>
+      <view class="segmented">
+        <view
+          class="seg-item {{playerCount === 2 ? 'is-on' : ''}}"
+          data-count="2"
+          bindtap="onChooseCount"
+        >
+          2 人
+        </view>
+        <view
+          class="seg-item {{playerCount === 3 ? 'is-on' : ''}}"
+          data-count="3"
+          bindtap="onChooseCount"
+        >
+          3 人
+        </view>
+      </view>
+    </view>
+
+    <view class="field" wx:if="{{playerCount === 3}}">
+      <view class="field-label">三人结算方式</view>
+      <view class="segmented">
+        <view
+          class="seg-item {{threeMode === 'all' ? 'is-on' : ''}}"
+          data-mode="all"
+          bindtap="onChooseMode"
+        >
+          通赔
+        </view>
+        <view
+          class="seg-item {{threeMode === 'upper' ? 'is-on' : ''}}"
+          data-mode="upper"
+          bindtap="onChooseMode"
+        >
+          只赔上家
+        </view>
+      </view>
+      <view class="field-hint">{{threeModeHint}}</view>
+    </view>
+
+    <view class="field">
+      <view class="field-label">玩家昵称</view>
+      <view class="names-grid">
+        <view class="name-field" wx:for="{{names}}" wx:for-index="idx" wx:for-item="name">
+          <text class="name-label">玩家 {{idx + 1}}</text>
+          <input
+            class="name-input"
+            type="text"
+            maxlength="12"
+            value="{{name}}"
+            placeholder="玩家{{idx + 1}}"
+            data-index="{{idx}}"
+            bindinput="onNameInput"
+          />
+        </view>
+      </view>
+      <view class="field-hint">{{nameHint}}</view>
+    </view>
+
+    <view class="primary-btn" bindtap="onStart" hover-class="primary-btn-hover">现在开始追分</view>
+
+    <view class="ghost-btn" wx:if="{{lastMatch}}" bindtap="onContinue" hover-class="ghost-btn-hover">
+      继续上一局 · {{lastMatch.playerCount}} 人 · 已记 {{lastMatch.actionCount}} 笔
+    </view>
+
+    <view class="footnote">仅用于线下娱乐记分，不涉及任何金钱或财物。</view>
+  </view>
+
+  <view class="modal" wx:if="{{showRules}}" bindtap="onCloseRules">
+    <view class="modal-card rules-modal-card" catchtap="noop">
+      <view class="rules-head">
+        <text class="rules-title">玩法与计分</text>
+        <text class="rules-close" bindtap="onCloseRules">关闭</text>
+      </view>
+
+      <view class="segmented rules-tabs">
+        <view
+          class="seg-item {{rulesTab === 'two' ? 'is-on' : ''}}"
+          data-tab="two"
+          bindtap="onSwitchRulesTab"
+        >
+          两人追分
+        </view>
+        <view
+          class="seg-item {{rulesTab === 'three' ? 'is-on' : ''}}"
+          data-tab="three"
+          bindtap="onSwitchRulesTab"
+        >
+          三人追分
+        </view>
+      </view>
+
+      <view class="rules-three-head" wx:if="{{rulesTab === 'three'}}">
+        <view class="rules-p">按昵称填写顺序围成一圈：前一位是上家，后一位是下家，点当事人的按钮自动结算。</view>
+        <view class="segmented rules-mode">
+          <view
+            class="seg-item {{threeRulesMode === 'all' ? 'is-on' : ''}}"
+            data-mode="all"
+            bindtap="onSwitchThreeRules"
+          >
+            通赔
+          </view>
+          <view
+            class="seg-item {{threeRulesMode === 'upper' ? 'is-on' : ''}}"
+            data-mode="upper"
+            bindtap="onSwitchThreeRules"
+          >
+            只赔上家
+          </view>
+        </view>
+      </view>
+
+      <scroll-view class="rules-body" scroll-y wx:if="{{rulesTab === 'two'}}">
+        <view class="rules-p">各记各的分：点谁的按钮，就只改谁的分数。两人局共 12 项，其中 4 项是让杆。</view>
+        <view class="rules-table is-two">
+          <view class="rules-row rules-row-head">
+            <text class="rules-cell is-name">项目</text>
+            <text class="rules-cell">本人</text>
+          </view>
+          <view class="rules-row" wx:for="{{twoPlayerRows}}" wx:key="id">
+            <text class="rules-cell is-name">{{item.label}}</text>
+            <text class="rules-cell {{item.cells[0].tone}}">{{item.cells[0].text}}</text>
+          </view>
+        </view>
+      </scroll-view>
+
+      <scroll-view class="rules-body" scroll-y wx:elif="{{threeRulesMode === 'all'}}">
+        <view class="rules-p">大金、黄金9、大黑金、黄金9黑金由另外两家各赔一份。</view>
+        <view class="rules-table">
+          <view class="rules-row rules-row-head">
+            <text class="rules-cell is-name">项目</text>
+            <text class="rules-cell">本人</text>
+            <text class="rules-cell">上家</text>
+            <text class="rules-cell">下家</text>
+          </view>
+          <view class="rules-row" wx:for="{{threeAllRows}}" wx:key="id">
+            <text class="rules-cell is-name">{{item.label}}</text>
+            <text class="rules-cell {{item.cells[0].tone}}">{{item.cells[0].text}}</text>
+            <text class="rules-cell {{item.cells[1].tone}}">{{item.cells[1].text}}</text>
+            <text class="rules-cell {{item.cells[2].tone}}">{{item.cells[2].text}}</text>
+          </view>
+        </view>
+      </scroll-view>
+
+      <scroll-view class="rules-body" scroll-y wx:else>
+        <view class="rules-p">以下 5 项与通赔不同，其余 {{threeSameCount}} 项照常结算。</view>
+        <view class="rules-table">
+          <view class="rules-row rules-row-head">
+            <text class="rules-cell is-name">项目</text>
+            <text class="rules-cell">本人</text>
+            <text class="rules-cell">上家</text>
+            <text class="rules-cell">下家</text>
+          </view>
+          <view class="rules-row" wx:for="{{threeUpperDiffRows}}" wx:key="id">
+            <text class="rules-cell is-name">{{item.label}}</text>
+            <text class="rules-cell {{item.cells[0].tone}}">{{item.cells[0].text}}</text>
+            <text class="rules-cell {{item.cells[1].tone}}">{{item.cells[1].text}}</text>
+            <text class="rules-cell {{item.cells[2].tone}}">{{item.cells[2].text}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
