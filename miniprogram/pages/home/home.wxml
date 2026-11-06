@@ -39,14 +39,14 @@
           data-mode="all"
           bindtap="onChooseMode"
         >
-          通赔
+          扣上下家
         </view>
         <view
           class="seg-item {{threeMode === 'upper' ? 'is-on' : ''}}"
           data-mode="upper"
           bindtap="onChooseMode"
         >
-          只赔上家
+          只扣上家
         </view>
       </view>
       <view class="field-hint">{{threeModeHint}}</view>
@@ -112,14 +112,14 @@
             data-mode="all"
             bindtap="onSwitchThreeRules"
           >
-            通赔
+            扣上下家
           </view>
           <view
             class="seg-item {{threeRulesMode === 'upper' ? 'is-on' : ''}}"
             data-mode="upper"
             bindtap="onSwitchThreeRules"
           >
-            只赔上家
+            只扣上家
           </view>
         </view>
       </view>
@@ -139,7 +139,7 @@
       </scroll-view>
 
       <scroll-view class="rules-body" scroll-y wx:elif="{{threeRulesMode === 'all'}}">
-        <view class="rules-p">大金、黄金9、大黑金、黄金9黑金由另外两家各赔一份。</view>
+        <view class="rules-p">大金、黄金9、大黑金、黄金9黑金由另外两家各扣一份。</view>
         <view class="rules-table">
           <view class="rules-row rules-row-head">
             <text class="rules-cell is-name">项目</text>
@@ -157,7 +157,7 @@
       </scroll-view>
 
       <scroll-view class="rules-body" scroll-y wx:else>
-        <view class="rules-p">以下 5 项与通赔不同，其余 {{threeSameCount}} 项照常结算。</view>
+        <view class="rules-p">以下 5 项与扣上下家不同，其余 {{threeSameCount}} 项照常结算。</view>
         <view class="rules-table">
           <view class="rules-row rules-row-head">
             <text class="rules-cell is-name">项目</text>

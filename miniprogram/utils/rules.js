@@ -1,7 +1,7 @@
 // 三人追分按上家 / 下家联动结算，与网页版 src/rules.ts 保持一致。
 // 座次：上家 = 前一位（index + 2），下家 = 后一位（index + 1），按 3 人取模。
 
-// 通赔：大金 / 黄金9 / 大黑金 / 黄金9黑金由另外两家都赔
+// 扣上下家：大金 / 黄金9 / 大黑金 / 黄金9黑金由另外两家都扣
 const THREE_PLAYER_ALL_RULES = {
   bigGold: [
     { seat: 'self', delta: 20 },
@@ -66,7 +66,7 @@ const THREE_PLAYER_ALL_RULES = {
   ],
 }
 
-// 只赔上家：通赔项也只由上一家赔单人份
+// 只扣上家：扣上下家项也只由上一家扣单人份
 const THREE_PLAYER_UPPER_RULES = {
   bigGold: [
     { seat: 'self', delta: 10 },

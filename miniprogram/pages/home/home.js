@@ -2,8 +2,8 @@ const store = require('../../utils/store')
 const rulesGuide = require('../../utils/rules-guide')
 
 const THREE_MODES = {
-  all: '大金、黄金9、大黑金、黄金9黑金由另外两家各赔一份。',
-  upper: '以上四项只由上一家赔单人份，另外一家不参与结算。',
+  all: '大金、黄金9、大黑金、黄金9黑金由另外两家各扣一份。',
+  upper: '以上四项只由上一家扣单人份，另外一家不参与结算。',
 }
 
 Page({

@@ -159,7 +159,7 @@ Page({
       count: count,
       players: players,
       showThreeMode: count === 3,
-      threeModeLabel: threeMode === 'upper' ? '只赔上家' : '通赔',
+      threeModeLabel: threeMode === 'upper' ? '只扣上家' : '扣上下家',
       statusText: statusText,
       hasActions: match.actions.length > 0,
       stats: this.buildStats(match, standings, scores, counts),
