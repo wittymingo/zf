@@ -193,7 +193,7 @@ export function MatchPage({ matchId, sharedMode, onExit }: MatchPageProps) {
 
   const lastAction = match.actions[match.actions.length - 1]
   const threeMode = match.threeMode ?? 'all'
-  const threeModeLabel = threeMode === 'upper' ? '只赔上家' : '通赔'
+  const threeModeLabel = threeMode === 'upper' ? '只扣上家' : '扣上下家'
   const lastActionTransfers = lastAction ? actionTransfers(lastAction) : []
   const lastActionDelta =
     lastActionTransfers.find((item) => item.playerId === lastAction?.playerId)?.delta ??
@@ -227,7 +227,7 @@ export function MatchPage({ matchId, sharedMode, onExit }: MatchPageProps) {
               aria-label={SYNC_LABEL[syncState]}
             />
           )}
-          <span className="brand-text">追分台球</span>
+          <span className="brand-text">234追分助手</span>
         </div>
         <div className="topbar-actions">
           {sharedMode && (
