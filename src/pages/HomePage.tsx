@@ -109,10 +109,9 @@ export function HomePage({ sharedMode, starting, startError, onStart, onContinue
     <main className="home">
       <div className="home-card">
         <p className="eyebrow">
-          台球.追分
+          <span className="home-brand">234追分助手</span>
           {!sharedMode && <span className="mode-badge">本地模式</span>}
         </p>
-        <h1>欢迎来追分</h1>
         <p className="lead">选人数、填昵称，点一下就能记分。</p>
 
         <button type="button" className="rules-entry" onClick={() => setShowRules(true)}>
