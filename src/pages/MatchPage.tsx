@@ -227,7 +227,7 @@ export function MatchPage({ matchId, sharedMode, onExit }: MatchPageProps) {
               aria-label={SYNC_LABEL[syncState]}
             />
           )}
-          <span className="brand-text">追分台球</span>
+          <span className="brand-text">234追分助手</span>
         </div>
         <div className="topbar-actions">
           {sharedMode && (
