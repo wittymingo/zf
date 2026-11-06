@@ -4,7 +4,7 @@
 create table if not exists public.matches (
   id uuid primary key,
   created_at timestamptz not null default now(),
-  -- 三人追分结算模式：all = 通赔（另外两家都赔），upper = 只赔上家
+  -- 三人追分结算模式：all = 扣上下家（另外两家都扣），upper = 只扣上家
   three_mode text not null default 'all'
 );
 

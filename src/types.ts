@@ -83,7 +83,7 @@ export interface Match {
   updatedAt: number
   players: Player[]
   actions: ScoreAction[]
-  // 三人追分结算模式：all = 通赔（另外两家都赔），upper = 只赔上家
+  // 三人追分结算模式：all = 扣上下家（另外两家都扣），upper = 只扣上家
   threeMode?: ThreeMode
 }
 

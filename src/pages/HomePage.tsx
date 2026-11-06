@@ -18,13 +18,13 @@ const PLAYER_COUNTS = [2, 3]
 const THREE_MODES: { id: ThreeMode; label: string; hint: string }[] = [
   {
     id: 'all',
-    label: '通赔',
-    hint: '大金、黄金9、大黑金、黄金9黑金由另外两家各赔一份。',
+    label: '扣上下家',
+    hint: '大金、黄金9、大黑金、黄金9黑金由另外两家各扣一份。',
   },
   {
     id: 'upper',
-    label: '只赔上家',
-    hint: '以上四项只由上一家赔单人份，另外一家不参与结算。',
+    label: '只扣上家',
+    hint: '以上四项只由上一家扣单人份，另外一家不参与结算。',
   },
 ]
 
@@ -247,14 +247,14 @@ export function HomePage({ sharedMode, starting, startError, onStart, onContinue
                     aria-pressed={threeRulesMode === 'all'}
                     onClick={() => switchThreeRules('all')}
                   >
-                    通赔
+                    扣上下家
                   </button>
                   <button
                     type="button"
                     aria-pressed={threeRulesMode === 'upper'}
                     onClick={() => switchThreeRules('upper')}
                   >
-                    只赔上家
+                    只扣上家
                   </button>
                 </div>
               </div>
@@ -268,12 +268,12 @@ export function HomePage({ sharedMode, starting, startError, onStart, onContinue
                 </section>
               ) : threeRulesMode === 'all' ? (
                 <section className="rules-section">
-                  <p>大金、黄金9、大黑金、黄金9黑金由另外两家各赔一份。</p>
+                  <p>大金、黄金9、大黑金、黄金9黑金由另外两家各扣一份。</p>
                   <RulesTable rows={THREE_ALL_ROWS} threePlayer />
                 </section>
               ) : (
                 <section className="rules-section">
-                  <p>以下 5 项与通赔不同，其余 {THREE_SAME_COUNT} 项照常结算。</p>
+                  <p>以下 5 项与扣上下家不同，其余 {THREE_SAME_COUNT} 项照常结算。</p>
                   <RulesTable rows={THREE_UPPER_DIFF_ROWS} threePlayer />
                 </section>
               )}

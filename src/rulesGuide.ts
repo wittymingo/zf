@@ -35,7 +35,7 @@ export const TWO_PLAYER_ROWS: GuideRow[] = SCORE_TYPES.filter(
 export const THREE_ALL_ROWS = rowsFromRules(THREE_PLAYER_ALL_RULES)
 export const THREE_UPPER_ROWS = rowsFromRules(THREE_PLAYER_UPPER_RULES)
 
-// 只赔上家与通赔的差异项：两者只有 5 项不同，其余照常结算
+// 只扣上家与扣上下家的差异项：两者只有 5 项不同，其余照常结算
 export const THREE_UPPER_DIFF_ROWS = THREE_UPPER_ROWS.filter(
   (row, index) => !sameRow(row, THREE_ALL_ROWS[index]),
 )

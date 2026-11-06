@@ -7,7 +7,7 @@ export interface RulePart {
   delta: number
 }
 
-// 三人追分 · 通赔：大金 / 黄金9 / 大黑金 / 黄金9黑金由另外两家都赔
+// 三人追分 · 扣上下家：大金 / 黄金9 / 大黑金 / 黄金9黑金由另外两家都扣
 export const THREE_PLAYER_ALL_RULES: Record<ScoreTypeId, RulePart[]> = {
   bigGold: [
     { seat: 'self', delta: 20 },
@@ -72,7 +72,7 @@ export const THREE_PLAYER_ALL_RULES: Record<ScoreTypeId, RulePart[]> = {
   ],
 }
 
-// 三人追分 · 只赔上家：通赔项也只由上一家赔单人份
+// 三人追分 · 只扣上家：扣上下家项也只由上一家扣单人份
 export const THREE_PLAYER_UPPER_RULES: Record<ScoreTypeId, RulePart[]> = {
   bigGold: [
     { seat: 'self', delta: 10 },
