@@ -4,7 +4,7 @@
       <text>台球.追分</text>
       <text class="mode-badge">本地模式</text>
     </view>
-    <view class="title">欢迎来追分</view>
+    <view class="title">开始追分</view>
     <view class="lead">选人数、填昵称，点一下就能记分。</view>
 
     <view class="rules-entry" bindtap="onOpenRules" hover-class="rules-entry-hover">
@@ -78,7 +78,7 @@
       继续上一局 · {{lastMatch.playerCount}} 人 · 已记 {{lastMatch.actionCount}} 笔
     </view>
 
-    <view class="footnote">分数只保存在这台手机，不会上传；换设备打开是另一局。</view>
+    <view class="footnote">仅用于线下娱乐记分，不涉及任何金钱或财物。</view>
   </view>
 
   <view class="modal" wx:if="{{showRules}}" bindtap="onCloseRules">
